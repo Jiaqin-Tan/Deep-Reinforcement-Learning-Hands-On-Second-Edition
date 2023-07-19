@@ -12,8 +12,11 @@ class RandomActionWrapper(gym.ActionWrapper):
         # super().__init__(env) is equivalent to gym.ActionWrapper.__init__(env)
         #__init__ is the "def __init__" method... you are just not good at coding... these concepts...
         # def = creating method
+        # __init__ is a method is called, when the class' obj is created. 
         # as you know, if you don't keep doing one thing, thing you will forgot. 
-        
+        # inside super() is call argument/parameter
+        # super() can take two, first is the subclass, second is the object of that subclass
+            # 
         self.epsilon = epsilon
 
     def action(self, action: Action) -> Action:
