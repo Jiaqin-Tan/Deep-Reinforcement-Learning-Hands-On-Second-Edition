@@ -14,6 +14,8 @@ class OurModule(nn.Module):
             nn.Softmax(dim=1)
         )
 
+    # forward method must be override. 
+    # If we call forward() directly, we will intervene with the nn.Module duty, which can give wrong results.
     def forward(self, x):
         return self.pipe(x)
 
