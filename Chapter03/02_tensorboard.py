@@ -14,3 +14,9 @@ if __name__ == "__main__":
             writer.add_scalar(name, val, angle)
 
     writer.close()
+
+
+
+# to run the saved file, use the following command:
+# terminal: tensorboard --logdir runs
+# then create ssh portforwarding 6006 localhost:6006
