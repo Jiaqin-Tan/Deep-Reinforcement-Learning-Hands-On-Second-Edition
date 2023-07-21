@@ -38,7 +38,9 @@ def iterate_batches(env, net, batch_size):
     obs = env.reset()
     sm = nn.Softmax(dim=1)
     while True:
-        obs_v = torch.FloatTensor([obs])
+        # Convert the observation to a tensor
+        obs
+        obs_v = torch.FloatTensor(env.observation_space.shape[0])
         act_probs_v = sm(net(obs_v))
         act_probs = act_probs_v.data.numpy()[0]
         action = np.random.choice(len(act_probs), p=act_probs)
@@ -77,7 +79,7 @@ def filter_batch(batch, percentile):
 
 
 if __name__ == "__main__":
-    env = gym.make("CartPole-v0")
+    env = gym.make("CartPole-v1")
     # env = gym.wrappers.Monitor(env, directory="mon", force=True)
     obs_size = env.observation_space.shape[0]
     n_actions = env.action_space.n
@@ -87,6 +89,7 @@ if __name__ == "__main__":
     optimizer = optim.Adam(params=net.parameters(), lr=0.01)
     writer = SummaryWriter(comment="-cartpole")
 
+    
     for iter_no, batch in enumerate(iterate_batches(
             env, net, BATCH_SIZE)):
         obs_v, acts_v, reward_b, reward_m = \
